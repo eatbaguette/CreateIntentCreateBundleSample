@@ -16,6 +16,14 @@ class MainActivity : AppCompatActivity() {
             val intent = SubActivity.createIntent(this, getTextFromEditText())
             startActivity(intent)
         }
+
+        startFragmentButton.setOnClickListener {
+            val fragment = SubFragment.createFragment(getTextFromEditText())
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.add(R.id.container, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
     }
 
     private fun getTextFromEditText(): String{
